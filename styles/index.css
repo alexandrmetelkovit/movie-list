@@ -1,9 +1,45 @@
-body {
-	font-family: 'Arimo', sans-serif;
-	background: #181818;
+html {
+	scroll-behavior: smooth;
 }
 
+.page {
+	margin: 0 auto;
+	width: 100%;
+	background: #232323;
+	font-family: "Arimo", sans-serif;
+	color: #fff;
+}
 
-h1 {
-	font-style: 20px;
+.header {
+	padding: 90px 0 0;
+}
+
+.container {
+	max-width: 950px;
+	margin: 0 auto;
+}
+
+.header_wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 30px;
+}
+
+.header__title {
+	border-radius: 200px;
+	border: 1px solid #6532F8;
+	background: #6532F8;
+	padding: 10px 22px;
+	text-align: center;
+	font-size: 15px;
+	color: #F3F6F9;
+	line-height: normal;
+	letter-spacing: -0.6px;
+	text-transform: uppercase;
+}
+
+.header__subtitle {
+	color: #F3F6F9;
+	font-size: 120px;
+	letter-spacing: -4.817px;
 }
