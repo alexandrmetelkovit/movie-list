@@ -3,15 +3,14 @@ html {
 }
 
 .page {
-	margin: 0 auto;
 	width: 100%;
-	background: #232323;
+	background: #181818;
 	font-family: "Arimo", sans-serif;
 	color: #fff;
 }
 
 .header {
-	padding: 90px 0 0;
+	padding: 90px 0 30px 0;
 }
 
 .container {
@@ -19,7 +18,7 @@ html {
 	margin: 0 auto;
 }
 
-.header_wrapper {
+.header__wrapper {
 	display: flex;
 	flex-wrap: wrap;
 	margin-bottom: 30px;
@@ -32,14 +31,48 @@ html {
 	padding: 10px 22px;
 	text-align: center;
 	font-size: 15px;
-	color: #F3F6F9;
 	line-height: normal;
 	letter-spacing: -0.6px;
 	text-transform: uppercase;
 }
 
 .header__subtitle {
-	color: #F3F6F9;
-	font-size: 120px;
+	margin-bottom: 30px;
+	font-size: 120.4px;
+	font-weight: 400;
+	line-height: normal;
 	letter-spacing: -4.817px;
+}
+
+.movies__inner {
+	border-radius: 20px;
+	background: #232323;
+	padding: 60px 70px;
+	display: flex;
+	gap: 20px;
+}
+
+.movies__input {
+	width: 411px;
+	border: none;
+	border-bottom: 1px solid #F3F6F9;
+	background-color: inherit;
+	font-size: 30px;
+	letter-spacing: -0.6px;
+	color: #F3F6F9;
+	padding: 0 15px 15px;
+	opacity: 0.5;
+}
+
+.movies__add-btn {
+	border: none;
+	border-radius: 50%;
+	width: 62px;
+	height: 62px;
+	background-color: #6532F8;
+	background-image: url('../resources/arrow.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	cursor: pointer;
+	transition: all 0.4s ease-in-out;
 }

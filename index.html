@@ -20,18 +20,24 @@
 <body class="page">
 	<header class="header">
 		<div class="container">
-			<div class="header_wrapper">
+			<div class="header__wrapper">
 				<p class="header__title">Список фильмов</p>
 				<p class="header__title">2023</p>
 			</div>
 			<h1 class="header__subtitle">Посмотреть</h1>
 		</div>
 	</header>
-	<main>
-		<div class="container">
-			<div class="page__wrapper"></div>
+<section class="movies">
+	<div class="container">
+		<div class="movies__inner">
+			<input class="movies__input" type="text" name="filminput" placeholder="Добавьте фильм">
+			<button class="movies__add-btn"></button>
 		</div>
-	</main>
+		<div class="error">
+			Введите название фильма
+		</div>
+	</div>
+</section>
 </body>
 
 </html>
