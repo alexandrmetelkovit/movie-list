@@ -8,7 +8,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;1,400;1,500&display=swap"
 		rel="stylesheet">
 
-		<link rel="icon" href="resources/fav.png" type="image/x-icon" />
+	<link rel="icon" href="resources/fav.png" type="image/x-icon" />
 
 	<title>Movie-list</title>
 
@@ -27,17 +27,29 @@
 			<h1 class="header__subtitle">Посмотреть</h1>
 		</div>
 	</header>
-<section class="movies">
-	<div class="container">
-		<div class="movies__inner">
-			<input class="movies__input" type="text" name="filminput" placeholder="Добавьте фильм">
-			<button class="movies__add-btn"></button>
+	<main class="main">
+		<div class="container">
+			<section class="movies">
+				<div class="movies__inner">
+					<form action class="form" class="movies__inner">
+						<input class="movies__input" type="text" name="filminput" placeholder="Добавьте фильм">
+						<button class="movies__add-btn"></button>
+					</form>
+					<div class="movies__error">
+						Введите название фильма
+					</div>
+				</div>
+			</section>
+			<section class="movies__display">
+				<ul class="movies__list"></ul>
+			</section>
 		</div>
-		<div class="error">
-			Введите название фильма
-		</div>
-	</div>
-</section>
+	</main>
+<footer class="footer">
+<div class="footer__tg">
+	<a class="contacts__email" target="_blank" href="https://t.me/vkru13">vkru13</a>
+</div>
+</footer>
 </body>
 
 </html>

@@ -44,10 +44,13 @@ html {
 	letter-spacing: -4.817px;
 }
 
-.movies__inner {
+.movies {
 	border-radius: 20px;
 	background: #232323;
 	padding: 60px 70px;
+}
+
+.form {
 	display: flex;
 	gap: 20px;
 }
@@ -66,13 +69,39 @@ html {
 
 .movies__add-btn {
 	border: none;
-	border-radius: 50%;
 	width: 62px;
 	height: 62px;
+	background: url('../resources/arrow.svg') center no-repeat;
 	background-color: #6532F8;
-	background-image: url('../resources/arrow.svg');
-	background-repeat: no-repeat;
-	background-position: center;
+	border-radius: 50%;
 	cursor: pointer;
-	transition: all 0.4s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+
+.movies__error {
+	margin-bottom: 15px;
+	font-size: 14px;
+	line-height: 35px;
+	color: rgb(130, 157, 224);
+}
+
+.footer {
+	display: flex;
+	justify-content: center;
+}
+
+.footer__tg {
+	padding: 15px 0 0 0;
+}
+
+.contacts__email {
+	font-size: 16px;
+	line-height: 28px;
+	cursor: pointer;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.footer__tg:hover {
+	opacity: 0.5;
+	transition: 0.5s;
 }
