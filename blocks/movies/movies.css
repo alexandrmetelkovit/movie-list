@@ -1,0 +1,44 @@
+.movies {
+	border-radius: 20px;
+	background: #232323;
+	padding: 60px 70px;
+}
+
+.form {
+	display: flex;
+	gap: 20px;
+}
+
+.movies__input {
+	width: 411px;
+	border: none;
+	border-bottom: 1px solid #F3F6F9;
+	background-color: inherit;
+	font-size: 30px;
+	letter-spacing: -0.6px;
+	color: #F3F6F9;
+	padding: 0 15px 15px;
+	opacity: 0.5;
+}
+
+.movies__add-btn {
+	border: none;
+	width: 62px;
+	height: 62px;
+	background: url('/resources/arrow.svg') center no-repeat;
+	background-color: #6532F8;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+
+.movies__error {
+	margin-bottom: 15px;
+	font-size: 14px;
+	line-height: 35px;
+	color: rgb(130, 157, 224);
+}
+
+.movies__error__hidden {
+	display: none;
+}

@@ -17,7 +17,7 @@
 </head>
 
 
-<body class="page">
+<body>
 	<header class="header">
 		<div class="container">
 			<div class="header__wrapper">
@@ -31,25 +31,25 @@
 		<div class="container">
 			<section class="movies">
 				<div class="movies__inner">
-					<form action class="form" class="movies__inner">
-						<input class="movies__input" type="text" name="filminput" placeholder="Добавьте фильм">
-						<button class="movies__add-btn"></button>
+					<form action class="form">
+						<input id="moviesInput" class="movies__input" type="text" name="movieinput" placeholder="Добавьте фильм">
+						<button id="moviesAddBtn" class="movies__add-btn"></button>
 					</form>
-					<div class="movies__error">
-						Введите название фильма
+					<div id="movieError" class="movies__error movies__error__hidden">
 					</div>
 				</div>
 			</section>
-			<section class="movies__display">
-				<ul class="movies__list"></ul>
+			<section id="moviesDisplay" class="movies__display">
 			</section>
 		</div>
 	</main>
-<footer class="footer">
-<div class="footer__tg">
-	<a class="contacts__email" target="_blank" href="https://t.me/vkru13">vkru13</a>
-</div>
-</footer>
+	<footer class="footer">
+		<div class="container">
+			<div class="footer__tg">
+				<a class="contacts__email" target="_blank" href="https://t.me/vkru13">vkru13</a>
+			</div>
+		</div>
+	</footer>
 </body>
 
 </html>

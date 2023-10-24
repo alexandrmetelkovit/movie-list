@@ -1,0 +1,29 @@
+.header {
+	padding: 90px 0 30px 0;
+}
+
+.header__wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 30px;
+}
+
+.header__title {
+	border-radius: 200px;
+	border: 1px solid #6532F8;
+	background: #6532F8;
+	padding: 10px 22px;
+	text-align: center;
+	font-size: 15px;
+	line-height: normal;
+	letter-spacing: -0.6px;
+	text-transform: uppercase;
+}
+
+.header__subtitle {
+	margin-bottom: 30px;
+	font-size: 120.4px;
+	font-weight: 400;
+	line-height: normal;
+	letter-spacing: -4.817px;
+}

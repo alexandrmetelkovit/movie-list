@@ -1,0 +1,16 @@
+.footer__tg {
+	text-align: center;
+	padding: 15px 0 0 0;
+}
+
+.contacts__email {
+	font-size: 16px;
+	line-height: 28px;
+	cursor: pointer;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.footer__tg:hover {
+	opacity: 0.5;
+	transition: 0.5s;
+}
