@@ -29,18 +29,29 @@
 	</header>
 	<main class="main">
 		<div class="container">
-			<section class="movies">
-				<div class="movies__inner">
-					<form action class="form">
-						<input id="moviesInput" class="movies__input" type="text" name="movieinput" placeholder="Добавьте фильм">
-						<button id="moviesAddBtn" class="movies__add-btn"></button>
-					</form>
-					<div id="movieError" class="movies__error movies__error__hidden">
-					</div>
+			<div class="movies__inner">
+				<form action="" class="form">
+					<input type="text" id="movieInput" class="movie__input" placeholder="Добавьте фильм">
+					<button type="button" id="movieAddBtn" class="movie__addBtn"></button>
+				</form>
+				<div id="validationMessage" class="validationMessage validationMessage__hidden">
+					dsada
 				</div>
-			</section>
-			<section id="moviesDisplay" class="movies__display">
-			</section>
+				<div id="moviesList" class="movies__list">
+					лента пустая...
+					<!-- <ul>
+						<li>
+							<input type="checkbox" unchecked>
+							<span>
+
+							</span>
+							<button>
+
+							</button>
+						</li>
+					</ul> -->
+				</div>
+			</div>
 		</div>
 	</main>
 	<footer class="footer">
@@ -50,6 +61,8 @@
 			</div>
 		</div>
 	</footer>
+
+	<script src="js/index.js"></script>
 </body>
 
 </html>

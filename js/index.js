@@ -1,51 +1,182 @@
+const TITLE_VALIDATION_MIN = 0;
+const TITLE_VALIDATION_MAX = 2;
 
-const limitTitle = 0;
-const limitErrorMessage = `введите название фильма`;
+const minTitleLimitMessage = 'Фильма без названия не найти';
+const maxTitleLimitMessage = `Очень длинное название`;
 
-const moviesInputNode = document.getElementById('moviesInput');
-const moviesAddBtnNode = document.getElementById('moviesAddBtn');
-const movieErrorNode = document.getElementById('movieError');
-const moviesDisplayNode = document.getElementById('moviesDisplay');
+let movies = [];
 
-const movies = 0;
+const titleMovieInputNode = document.getElementById('movieInput');
+const movieAddBtnNode = document.getElementById('movieAddBtn');
+const moviesOutputNode = document.getElementById('moviesList');
+const validationMessageNode = document.getElementById('validationMessage');
+const movieCloseBtnNode = document.getElementById('movieCloseBtn');
 
-moviesAddBtnNode.addEventListener('click', function() {
+movieAddBtnNode.addEventListener('click', function() {
+	// получение фмльма от юзера = получаю фильм из инпута
+const movieFromUser = getMovieFromUser();
 
-	const movieFromUser = getMovieFromUser();
+// присваиваем значение которое ввел юзер
+addMovies(movieFromUser);
 
-	addMovie(movieFromUser);
+renderMovies();
 
-	validation();
-})
+clearInput();
+});
 
-function validation() {
-const titleLength = moviesInputNode.value.length;
+const validation = () => {
+	const titleLength = titleMovieInputNode.value.length;
 
-if (titleLength === limitTitle) {
-	movieErrorNode.className = "movies__error";
-	movieErrorNode.innerText = limitErrorMessage;
-	return;
+	if (titleLength >= TITLE_VALIDATION_MAX) {
+		validationMessageNode.innerText = maxTitleLimitMessage;
+		validationMessageNode.classList.remove = 'validationMessage__hidden';
+		return;
+	} else {
+		validationMessageNode.classList.add = 'validationMessage__hidden';
+	}
+};
+
+const deleteMovie = () => {
+
 }
 
-movieErrorNode.className = 'movies__error__hidden';
 
-}
+
 
 const getMovieFromUser = () => {
-  const movieName = moviesInputNode.value; // получаем название фильма из поля ввода
+	const title = titleMovieInputNode.value;
 
-  if (movieName === "") {
-    moviesAddBtnNode.disabled = true;
-    return;
-  }
-
-	return movieName;
+ return {
+	title
+ };
 }
 
-const addMovie = (movieName) => {
-
-	movies.push(
-		movieName
-	)
-	return
+// присваивание нового фильма к ФИЛЬМАМ
+const addMovies = ({ title }) => {
+	movies.push({ 
+		title
+	});
 }
+
+// очистка инпута после нажатия кнопки добавления
+const clearInput = () => {
+	titleMovieInputNode.value = '';
+}
+
+const getMovies = () => {
+	return movies;
+}
+
+// отображение фильма
+const renderMovies = () => {
+const movies = getMovies();
+
+let moviesHTML = '';
+
+	movies.forEach(movie => {
+		moviesHTML += `
+				<div class='movie'>
+				<div class='checkbox__container'> 
+				<input type='checkbox' class='custom__checkbox'>
+				</div>
+				<div class='movie__name'>
+				<p class='movie__title'>${movie.title}</p>
+				</div>
+				<button id='movieCloseBtn' class='close__movie'></button>
+				</div>
+		`
+	});
+
+	moviesOutputNode.innerHTML = moviesHTML;
+}
+
+titleMovieInputNode.addEventListener('input', validation);
+
+
+
+
+
+
+// const getMovieFromUser = () => {
+//   const movieName = movieInputNode.value; // получаем название фильма из поля ввода
+
+// 	if (!movieName) {
+// 		alert(limitErrorMessage);
+// 		return;
+// 	}
+
+// 	clearMovieInput();
+// }
+
+
+// const clearMovieInput = () => {
+//   movieInputNode.value = "";
+// };
+// // function deleteMovies() {
+// //   movies.length = [];
+
+// //   moviesListNode.innerHTML = "Тут пока пусто...";
+// // }
+
+
+
+// const getMovies = () => movies;
+
+
+
+// // const renderMovies = () => {
+// // 	moviesInputNode.innerHTML = '';
+
+// // 	const listMovies = document.createElement('ul');
+// // listMovies.className = 'movies__list';
+
+// // const list = getMovies();
+
+// // list.forEach((element, index) => {
+// // 	const listEl = document.createElement('li');
+// // 	const listElLabel = document.createElement('label');
+// // 	const listElCheckbox = document.createElement('input');
+// // 	const listElFakeCheckbox = document.createElement('div');
+// // 	const listName = document.createElement('span');
+// // 	const listElDeleteBtn = document.createElement('button');
+
+// // 	listEl.className = 'movies__list-item';
+// // 	listElLabel.className = 'movie';
+// // 	listElCheckbox.className = 'movie__checkbox';
+// // 	listElFakeCheckbox.className = 'movie__fake__checkbox';
+// // 	listName.className = 'movie__title';
+// // 	listElDeleteBtn.className = 'movie__deleteBtn';
+
+// // 	listEl.setAttribute('id', index);
+// // 	listElCheckbox.setAttribute('type', 'checkbox');
+// // 	listElCheckbox.setAttribute(element.check, '');
+// // 	listElDeleteBtn.setAttribute('id', index);
+
+// // 	listName.innerText = element.name;
+
+// // 	listEl.appendChild(listElLabel);
+// // 	listElLabel.appendChild(listElCheckbox);
+// // 	listElLabel.appendChild(listElFakeCheckbox);
+// // 	listElLabel.appendChild(listName);
+// // 	listElLabel.appendChild(listElDeleteBtn);
+
+// // listMovies.appendChild(listEl);
+
+// // listElCheckbox.addEventListener('click', () => {
+// // 	if (element.check === 'unchecked') {
+// // 		element.check = 'checked';
+// // 	} else {
+// // 		element.check = 'unchecked';
+// // 	}
+// // });
+
+// // listElDeleteBtn.addEventListener('click', () => {
+// // 	movies.splice(index, 1);
+// // 	renderMovies();
+// // })
+// // moviesListNode.appendChild(listMovies);
+// // });
+// // }
+
+
+
