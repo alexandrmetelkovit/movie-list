@@ -17,7 +17,7 @@
 	font-size: 30px;
 	letter-spacing: -0.6px;
 	color: #F3F6F9;
-	padding: 0 15px 15px;
+	padding-left: 15px;
 	opacity: 0.5;
 }
 
@@ -48,6 +48,8 @@
 	display: flex;
 	flex-direction: column;
 	gap: 3px;
+	max-height: 300px;
+	overflow-y: auto;
 }
 
 .movie {
@@ -58,26 +60,66 @@
 	padding: 28px 30px 28px 20px;
 }
 
-.checkbox__container {
-	width: 19px;
-	height: 18px;
+/* checkbox */
+.checkbox {
+	display: flex;
+	position: relative;
+	width: 700px;
 }
 
-.custom__checkbox {
-	border-radius: 50%;
+.checkbox__input {
+	-webkit-appearance: none;
+	appearance: none;
+	position: absolute;
 }
 
-.movie__name {
+/* .movie__name {
 	width: 100%;
-}
+} */
 
-.movie__title {
-	width: 720px;
-	padding: 0 15px;
-	color: #F3F6F9;
+.checkbox__label {
+	padding-left: 35px;
 	font-size: 20px;
+	color: #F3F6F9;
 	font-weight: 400;
 	word-wrap: break-word;
+	width: 700px;
+}
+
+.checkbox__label:before {
+	content: '';
+	display: block;
+	width: 19px;
+	height: 19px;
+
+	border: 1px solid #F3F6F9;
+	border-radius: 50px;
+	opacity: 0.3;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	cursor: pointer;
+}
+
+.checkbox__label::after {
+	content: '';
+	display: block;
+	width: 19px;
+	height: 19px;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	cursor: pointer;
+}
+
+.checkbox__input:checked+.checkbox__label::before {
+	border-radius: 50%;
+	background: #6532F8;
+	opacity: 0.3;
 }
 
 .close__movie {
@@ -91,10 +133,6 @@
 	cursor: pointer;
 }
 
-/* .movies__list {
-
-} */
-
 @media (max-width: 1199px) {
 	.movies__list {
 		width: 100%;
@@ -104,17 +142,33 @@
 		padding: 20px;
 	}
 
-	.movie__name {
+	.checkbox {
 		width: 100%;
 	}
 
-	.movie__title {
+	.checkbox__label {
 		width: 100%;
 		font-size: 18px;
 	}
 }
 
 @media (max-width: 767px) {
+	.checkbox__input {
+		width: 360px;
+		border: none;
+		border-bottom: 1px solid #F3F6F9;
+		background-color: inherit;
+		font-size: 25px;
+		letter-spacing: -0.6px;
+		color: #F3F6F9;
+		padding: 0 15px 15px;
+		opacity: 0.5;
+	}
+
+	.movie__addBtn {
+		height: 52px;
+		width: 52px;
+	}
 
 	.movies__list {
 		min-width: 200px;
@@ -122,10 +176,6 @@
 
 	.movie {
 		padding: 15px;
-	}
-
-	.movie__title {
-		max-width: 440px;
 	}
 
 	.close__movie {

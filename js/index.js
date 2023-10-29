@@ -1,5 +1,5 @@
 const TITLE_VALIDATION_MIN = 0;
-const TITLE_VALIDATION_MAX = 2;
+const TITLE_VALIDATION_MAX = 20;
 
 const minTitleLimitMessage = 'Фильма без названия не найти';
 const maxTitleLimitMessage = `Очень длинное название`;
@@ -24,24 +24,35 @@ renderMovies();
 clearInput();
 });
 
-const validation = () => {
-	const titleLength = titleMovieInputNode.value.length;
-
-	if (titleLength >= TITLE_VALIDATION_MAX) {
-		validationMessageNode.innerText = maxTitleLimitMessage;
-		validationMessageNode.classList.remove = 'validationMessage__hidden';
-		return;
-	} else {
-		validationMessageNode.classList.add = 'validationMessage__hidden';
-	}
-};
 
 const deleteMovie = () => {
+	movies = [];
 
+	movies.splice(0, 0);
+	return
 }
 
 
+const validation = () => {
+	const titleLength = titleMovieInputNode.value.length;
 
+	if (!titleLength || titleLength <= TITLE_VALIDATION_MIN) {
+		validationMessageNode.className = 'validationMessage';
+		validationMessageNode.innerText = minTitleLimitMessage;
+		movieAddBtnNode.disabled = true;
+		return
+	} 
+
+	if (titleLength > TITLE_VALIDATION_MAX) {
+		validationMessageNode.className = 'validationMessage';
+		validationMessageNode.innerText = maxTitleLimitMessage;
+		movieAddBtnNode.disabled = true;
+		return
+	} 
+
+		validationMessageNode.className = 'validationMessage__hidden';
+		movieAddBtnNode.disabled = false;
+};
 
 const getMovieFromUser = () => {
 	const title = titleMovieInputNode.value;
@@ -76,11 +87,9 @@ let moviesHTML = '';
 	movies.forEach(movie => {
 		moviesHTML += `
 				<div class='movie'>
-				<div class='checkbox__container'> 
-				<input type='checkbox' class='custom__checkbox'>
-				</div>
-				<div class='movie__name'>
-				<p class='movie__title'>${movie.title}</p>
+				<div class='checkbox'> 
+				<input id='checkbox_1' type='checkbox' class='checkbox__input'>
+				<label for='checkbox_1' class='checkbox__label'>${movie.title}</label>
 				</div>
 				<button id='movieCloseBtn' class='close__movie'></button>
 				</div>
@@ -90,7 +99,11 @@ let moviesHTML = '';
 	moviesOutputNode.innerHTML = moviesHTML;
 }
 
+// movieCloseBtnNode.addEventListener('click', deleteMovie);
 titleMovieInputNode.addEventListener('input', validation);
+
+
+
 
 
 
