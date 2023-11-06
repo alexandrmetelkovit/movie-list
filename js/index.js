@@ -1,195 +1,144 @@
-const TITLE_VALIDATION_MIN = 0;
-const TITLE_VALIDATION_MAX = 20;
+const titleMovieInputNode = document.getElementById('movieInput');
+const movieAddBtnNode = document.getElementById('movieAddBtn');
+const moviesOutputNode = document.getElementById('movies');
+const validationMessageNode = document.getElementById('validationMessage');
 
-const minTitleLimitMessage = 'Фильма без названия не найти';
-const maxTitleLimitMessage = `Очень длинное название`;
+const TITLE_VALIDATION_MIN = 0;
+const TITLE_VALIDATION_MAX = 10;
+
+const minTitleLimitMessage = 'Фильм без названия не найти';
+const maxTitleLimitMessage = 'Очень длинное название';
 
 let movies = [];
 
-const titleMovieInputNode = document.getElementById('movieInput');
-const movieAddBtnNode = document.getElementById('movieAddBtn');
-const moviesOutputNode = document.getElementById('moviesList');
-const validationMessageNode = document.getElementById('validationMessage');
-const movieCloseBtnNode = document.getElementById('movieCloseBtn');
-
-movieAddBtnNode.addEventListener('click', function() {
-	// получение фмльма от юзера = получаю фильм из инпута
-const movieFromUser = getMovieFromUser();
-
-// присваиваем значение которое ввел юзер
-addMovies(movieFromUser);
-
-renderMovies();
-
-clearInput();
-});
-
-
-const deleteMovie = () => {
-	movies = [];
-
-	movies.splice(0, 0);
-	return
-}
-
-
-const validation = () => {
+function validation() {
 	const titleLength = titleMovieInputNode.value.length;
 
-	if (!titleLength || titleLength <= TITLE_VALIDATION_MIN) {
+	if (!titleLength || titleLength < TITLE_VALIDATION_MIN) {
 		validationMessageNode.className = 'validationMessage';
 		validationMessageNode.innerText = minTitleLimitMessage;
 		movieAddBtnNode.disabled = true;
-		return
+		return;
 	} 
 
 	if (titleLength > TITLE_VALIDATION_MAX) {
 		validationMessageNode.className = 'validationMessage';
 		validationMessageNode.innerText = maxTitleLimitMessage;
 		movieAddBtnNode.disabled = true;
-		return
+		return;
 	} 
 
 		validationMessageNode.className = 'validationMessage__hidden';
 		movieAddBtnNode.disabled = false;
 };
 
-const getMovieFromUser = () => {
-	const title = titleMovieInputNode.value;
+function newPostMovieHandler() {
+	const movieFromUser = getMovieFromUser();
 
- return {
-	title
- };
+	addMovies(movieFromUser);
+
+	validation();
+	
+	renderMovies();
+	
+	clearInput();
 }
 
-// присваивание нового фильма к ФИЛЬМАМ
-const addMovies = ({ title }) => {
-	movies.push({ 
-		title
-	});
+// получение названия фильма из инпута
+function getMovieFromUser() {
+		const movieName = titleMovieInputNode.value;
+
+		return movieName;
 }
 
-// очистка инпута после нажатия кнопки добавления
-const clearInput = () => {
-	titleMovieInputNode.value = '';
+function clearInput() {
+	titleMovieInputNode.value = "";
+	validation();
+};
+
+function addMovies(movie) {
+	movies.push(movie);
+	clearInput();
 }
 
-const getMovies = () => {
+function getMovies() {
 	return movies;
 }
 
 // отображение фильма
-const renderMovies = () => {
-const movies = getMovies();
+function renderMovies() {
+	moviesOutputNode.innerHTML = '';
 
-let moviesHTML = '';
+	const movieWrapper = document.createElement('ul');
+	movieWrapper.className = 'movies__list';
+	
+	const wrapper = getMovies();
 
-	movies.forEach(movie => {
-		moviesHTML += `
-				<div class='movie'>
-				<div class='checkbox'> 
-				<input id='checkbox_1' type='checkbox' class='checkbox__input'>
-				<label for='checkbox_1' class='checkbox__label'>${movie.title}</label>
-				</div>
-				<button id='movieCloseBtn' class='close__movie'></button>
-				</div>
-		`
-	});
+	wrapper.forEach((element, index) => {
+		const wrapperMovieItem = document.createElement('li');
+		wrapperMovieItem.className = 'movies__list-item';
+		wrapperMovieItem.setAttribute('id', index);
 
-	moviesOutputNode.innerHTML = moviesHTML;
+		const wrapperMovieLabel = document.createElement('label');
+		wrapperMovieLabel.className = 'label';
+
+		const wrapperCheckbox = document.createElement('input');
+		wrapperCheckbox.className = 'real__checkbox';
+		wrapperCheckbox.setAttribute('type', 'checkbox');
+
+		const wrapperCheckboxClick = document.createElement('div');
+		wrapperCheckboxClick.className = 'checkbox__click';
+		// wrapperCheckboxClick.checked(movie.checked);
+
+		const wrapperMovieName = document.createElement('span');
+		wrapperMovieName.className = 'movie__name';
+		wrapperMovieName.innerText = element.name;
+
+		const wrapperMovieCloseBtn = document.createElement('button');
+		wrapperMovieCloseBtn.className = 'movie__close-btn';
+		wrapperMovieCloseBtn.setAttribute('id', index);
+
+
+		wrapperMovieItem.appendChild(wrapperMovieLabel);
+		wrapperMovieLabel.appendChild(wrapperCheckbox);
+		wrapperMovieLabel.appendChild(wrapperCheckboxClick);
+		wrapperMovieLabel.appendChild(wrapperMovieName);
+		wrapperMovieLabel.appendChild(wrapperMovieCloseBtn);
+
+		movieWrapper.appendChild(wrapperMovieItem);
+	
+		moviesOutputNode.appendChild(movieWrapper)
+
+});
 }
 
-// movieCloseBtnNode.addEventListener('click', deleteMovie);
+
 titleMovieInputNode.addEventListener('input', validation);
+movieAddBtnNode.addEventListener('click', newPostMovieHandler);
+
+	
 
 
 
+function clickToEnter(event) {
+	if(event.keyCode === 13) {
+		 event.preventDefault();
+			addMovies();
+	}
+}
+movieAddBtnNode.addEventListener('keydown', clickToEnter);
+
+// titleMovieInputNode.addEventListener('input', validation);
 
 
+// document.getElementById("text")
+//     .addEventListener("keyup", function(e) {
+//         if (e.keyCode === 13) {
+//             document.getElementById("submit").click();
+//         }
+//     });
 
-
-
-
-// const getMovieFromUser = () => {
-//   const movieName = movieInputNode.value; // получаем название фильма из поля ввода
-
-// 	if (!movieName) {
-// 		alert(limitErrorMessage);
-// 		return;
-// 	}
-
-// 	clearMovieInput();
-// }
-
-
-// const clearMovieInput = () => {
-//   movieInputNode.value = "";
-// };
-// // function deleteMovies() {
-// //   movies.length = [];
-
-// //   moviesListNode.innerHTML = "Тут пока пусто...";
-// // }
-
-
-
-// const getMovies = () => movies;
-
-
-
-// // const renderMovies = () => {
-// // 	moviesInputNode.innerHTML = '';
-
-// // 	const listMovies = document.createElement('ul');
-// // listMovies.className = 'movies__list';
-
-// // const list = getMovies();
-
-// // list.forEach((element, index) => {
-// // 	const listEl = document.createElement('li');
-// // 	const listElLabel = document.createElement('label');
-// // 	const listElCheckbox = document.createElement('input');
-// // 	const listElFakeCheckbox = document.createElement('div');
-// // 	const listName = document.createElement('span');
-// // 	const listElDeleteBtn = document.createElement('button');
-
-// // 	listEl.className = 'movies__list-item';
-// // 	listElLabel.className = 'movie';
-// // 	listElCheckbox.className = 'movie__checkbox';
-// // 	listElFakeCheckbox.className = 'movie__fake__checkbox';
-// // 	listName.className = 'movie__title';
-// // 	listElDeleteBtn.className = 'movie__deleteBtn';
-
-// // 	listEl.setAttribute('id', index);
-// // 	listElCheckbox.setAttribute('type', 'checkbox');
-// // 	listElCheckbox.setAttribute(element.check, '');
-// // 	listElDeleteBtn.setAttribute('id', index);
-
-// // 	listName.innerText = element.name;
-
-// // 	listEl.appendChild(listElLabel);
-// // 	listElLabel.appendChild(listElCheckbox);
-// // 	listElLabel.appendChild(listElFakeCheckbox);
-// // 	listElLabel.appendChild(listName);
-// // 	listElLabel.appendChild(listElDeleteBtn);
-
-// // listMovies.appendChild(listEl);
-
-// // listElCheckbox.addEventListener('click', () => {
-// // 	if (element.check === 'unchecked') {
-// // 		element.check = 'checked';
-// // 	} else {
-// // 		element.check = 'unchecked';
-// // 	}
-// // });
-
-// // listElDeleteBtn.addEventListener('click', () => {
-// // 	movies.splice(index, 1);
-// // 	renderMovies();
-// // })
-// // moviesListNode.appendChild(listMovies);
-// // });
-// // }
-
-
+// document.addEventListener( 'keyup', event => {
+//   if( event.code === 'Enter' ) console.log('enter was pressed');
+// });
 
