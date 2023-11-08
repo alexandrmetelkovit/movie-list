@@ -17,12 +17,12 @@
 	font-size: 30px;
 	letter-spacing: -0.6px;
 	color: #F3F6F9;
-	padding: 0 15px 15px 15px;
+	padding: 15px;
 	opacity: 0.5;
 }
 
 .movie__input:focus {
-	border-color: #d44d0f;
+	border-color: orange;
 }
 
 .movie__addBtn {
@@ -79,26 +79,35 @@
 
 .checkbox__click {
 	width: 19px;
-	height: 19px;
-	background-image: url('/resources/checkbox.svg');
-	background-repeat: no-repeat;
-	background-size: contain;
+	height: 18px;
+	border: 1px solid #F3F6F9;
 	cursor: pointer;
-	transition: all 0.5s ease;
+	border-radius: 50%;
+}
+
+/* checked */
+.real__checkbox:checked+.checkbox__click {
+	background-color: #6532F8;
+	transition: all 0.3s ease;
+}
+
+.movies__list-item:has(.label > .real__checkbox:checked) {
+	opacity: 0.4;
+	transition: all 0.3s ease;
 }
 
 .movie__name {
-	width: 670px;
 	color: #F3F6F9;
 	font-size: 20px;
 	font-weight: 400;
 	line-height: 30px;
+	width: 660px;
 }
 
 .movie__close-btn {
 	display: block;
-	width: 23px;
-	height: 23px;
+	width: 22px;
+	height: 21px;
 	border: none;
 	background-color: #fff;
 	background: url('/resources/close.svg');

@@ -37,6 +37,7 @@ function newPostMovieHandler() {
 
 	addMovies(movieFromUser);
 
+
 	validation();
 	
 	renderMovies();
@@ -88,11 +89,10 @@ function renderMovies() {
 
 		const wrapperCheckboxClick = document.createElement('div');
 		wrapperCheckboxClick.className = 'checkbox__click';
-		// wrapperCheckboxClick.checked(movie.checked);
 
 		const wrapperMovieName = document.createElement('span');
 		wrapperMovieName.className = 'movie__name';
-		wrapperMovieName.innerText = element.name;
+		wrapperMovieName.innerText = element;
 
 		const wrapperMovieCloseBtn = document.createElement('button');
 		wrapperMovieCloseBtn.className = 'movie__close-btn';
@@ -107,38 +107,34 @@ function renderMovies() {
 
 		movieWrapper.appendChild(wrapperMovieItem);
 	
-		moviesOutputNode.appendChild(movieWrapper)
+
+		wrapperCheckbox.addEventListener('click', () => {
+			if (element.check === 'unchecked') {
+				element.check = 'checked';
+			} else {
+				element.check
+			}
+		});
+		wrapperMovieCloseBtn.addEventListener('click', function() {
+			// удаление одного элемента из массива
+			movies.splice(index, 1);
+			renderMovies()
+			});
 
 });
-}
 
+moviesOutputNode.appendChild(movieWrapper)
 
-titleMovieInputNode.addEventListener('input', validation);
-movieAddBtnNode.addEventListener('click', newPostMovieHandler);
+};
 
-	
-
-
-
-function clickToEnter(event) {
-	if(event.keyCode === 13) {
-		 event.preventDefault();
-			addMovies();
+function clickToEnter(e) {
+	if(e.keyCode === 13) {
+		event.preventDefault();
+		newPostMovieHandler()
 	}
 }
-movieAddBtnNode.addEventListener('keydown', clickToEnter);
 
-// titleMovieInputNode.addEventListener('input', validation);
-
-
-// document.getElementById("text")
-//     .addEventListener("keyup", function(e) {
-//         if (e.keyCode === 13) {
-//             document.getElementById("submit").click();
-//         }
-//     });
-
-// document.addEventListener( 'keyup', event => {
-//   if( event.code === 'Enter' ) console.log('enter was pressed');
-// });
+titleMovieInputNode.addEventListener('keydown', clickToEnter);
+titleMovieInputNode.addEventListener('input', validation);
+movieAddBtnNode.addEventListener('click', newPostMovieHandler);
 
