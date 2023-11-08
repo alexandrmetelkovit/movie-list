@@ -27,3 +27,23 @@
 	line-height: normal;
 	letter-spacing: -4.817px;
 }
+
+@media (max-width: 767px) {
+	.header {
+		padding: 50px 0 20px 0;
+	}
+
+	.header__wrapper {
+		margin-bottom: 20px;
+	}
+
+	.header__title {
+		padding: 7px 15px;
+		font-size: 12px;
+	}
+
+	.header__subtitle {
+		margin-bottom: 20px;
+		font-size: 60px;
+	}
+}

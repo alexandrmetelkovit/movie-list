@@ -31,7 +31,6 @@
 	border: none;
 	background: url('../resources/arrow.svg') center no-repeat;
 	background-color: #6532F8;
-	background-repeat: no-repeat;
 	border-radius: 50%;
 	cursor: pointer;
 }
@@ -110,9 +109,7 @@
 	height: 21px;
 	border: none;
 	background-color: #fff;
-	background: url('/resources/close.svg');
-	background-size: cover;
-	background-repeat: no-repeat;
+	background: url('../resources/close.svg') cover no-repeat;
 	cursor: pointer;
 	transition: all 0.5s ease-out;
 }
@@ -136,13 +133,13 @@
 }
 
 @media (max-width: 767px) {
+	.movies__inner {
+		padding: 40px 50px;
+	}
+
 	.movie__addBtn {
 		height: 52px;
 		width: 52px;
-	}
-
-	.movies__list {
-		min-width: 200px;
 	}
 
 	.close__movie {
