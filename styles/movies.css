@@ -109,7 +109,7 @@
 	height: 21px;
 	border: none;
 	background-color: #fff;
-	background: url('../resources/close.svg') cover no-repeat;
+	background: no-repeat center/cover url('../resources/close.svg');
 	cursor: pointer;
 	transition: all 0.5s ease-out;
 }
