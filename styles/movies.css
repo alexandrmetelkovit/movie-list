@@ -29,7 +29,7 @@
 	height: 62px;
 	width: 62px;
 	border: none;
-	background: url('/resources/arrow.svg') center no-repeat;
+	background: url('../resources/arrow.svg') center no-repeat;
 	background-color: #6532F8;
 	background-repeat: no-repeat;
 	border-radius: 50%;
