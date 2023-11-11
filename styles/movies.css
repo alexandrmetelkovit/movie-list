@@ -1,31 +1,31 @@
 .movies__inner {
-	border-radius: 20px;
-	background: #232323;
-	padding: 60px 70px;
+	margin-bottom: 40px;
 }
 
-.form {
+.movies__form {
 	display: flex;
-	gap: 20px;
+	flex-direction: row;
+	gap: 15px;
+	margin-bottom: 15px;
 }
 
-.movie__input {
+.movie__title__input {
 	width: 411px;
-	border: none;
-	border-bottom: 1px solid #F3F6F9;
 	background-color: inherit;
 	font-size: 30px;
-	letter-spacing: -0.6px;
 	color: #F3F6F9;
-	padding: 15px;
+	border: none;
+	border-bottom: 1px solid #F3F6F9;
+	padding: 15px 10px 10px 10px;
 	opacity: 0.5;
 }
 
-.movie__input:focus {
+.movie__title__input:focus {
 	border-color: orange;
 }
 
 .movie__addBtn {
+	display: block;
 	height: 62px;
 	width: 62px;
 	border: none;
@@ -35,36 +35,32 @@
 	cursor: pointer;
 }
 
-.input__container {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
-
-.movies {
-	margin-top: 40px;
+.movie__addBtn:hover {
+	opacity: 0.6;
+	transition: all 0.5s ease;
 }
 
 .movies__list {
 	display: flex;
 	flex-direction: column;
-	width: 100%;
+	gap: 3px;
+	max-height: 267px;
+	overflow-y: auto;
 }
 
-.movies__list-item {
+.movies__list__item {
 	display: flex;
 	align-items: center;
 	background-color: #3A3939;
 	justify-content: space-between;
 	padding: 28px 30px 28px 20px;
 	border-radius: 10px;
-	margin-bottom: 3px;
 }
 
 .label {
 	display: flex;
+	width: 100%;
 	align-items: center;
-	justify-content: space-between;
 	gap: 15px;
 	cursor: pointer;
 }
@@ -90,55 +86,75 @@
 	transition: all 0.3s ease;
 }
 
-.movies__list-item:has(.label > .real__checkbox:checked) {
+.movies__list__item:has(.label > .real__checkbox:checked) {
 	opacity: 0.4;
 	transition: all 0.3s ease;
 }
 
 .movie__name {
+	max-width: 660px;
+	flex: 1;
 	color: #F3F6F9;
 	font-size: 20px;
 	font-weight: 400;
 	line-height: 30px;
-	width: 660px;
+	word-wrap: break-word;
 }
 
-.movie__close-btn {
+.movie__close__btn {
 	display: block;
 	width: 22px;
 	height: 21px;
 	border: none;
-	background: url('../resources/close.svg') no-repeat center/cover;
+	background: url('../resources/close.svg') center/cover no-repeat;
 	cursor: pointer;
 	transition: all 0.5s ease-out;
 }
 
-.movie__close-btn:hover {
+.movie__close__btn:hover {
 	opacity: 0.6;
 }
 
 @media (max-width: 1199px) {
-	.movies__list {
-		width: 100%;
+	.movie__title__input {
+		max-width: 350px;
+		font-size: 22px;
 	}
 
-	.label {
-		width: 100%;
+	.movies__list__item {
+		padding: 22px 25px;
+		border-radius: 10px;
 	}
 
 	.movie__name {
-		width: 100%;
+		min-width: 500px;
+		font-size: 18px;
 	}
 }
 
 @media (max-width: 767px) {
-	.movies__inner {
-		padding: 40px 50px;
+	.form {
+		gap: 10px;
+	}
+
+	.movie__input {
+		font-size: 18px;
+		padding: 10px;
 	}
 
 	.movie__addBtn {
 		height: 52px;
 		width: 52px;
+	}
+
+	.movies__list__item {
+		padding: 18px 22px;
+		border-radius: 10px;
+	}
+
+	.movie__name {
+		min-width: 290px;
+		font-size: 16px;
 	}
 
 	.close__movie {

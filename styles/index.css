@@ -15,8 +15,14 @@ body {
 }
 
 .container {
-	width: 930px;
+	max-width: 930px;
 	margin: 0 auto;
+}
+
+.page__wrapper {
+	background: #232323;
+	border-radius: 20px;
+	padding: 60px 70px;
 }
 
 @media (max-width: 1199px) {
@@ -24,11 +30,19 @@ body {
 		width: 100%;
 		padding: 0 25px;
 	}
+
+	.page__wrapper {
+		padding: 40px 50px;
+	}
 }
 
 @media (max-width: 767px) {
 	.container {
-		min-width: 800px;
-		padding: 0 25px;
+		min-width: 500px;
+		padding: 0 14px;
+	}
+
+	.page__wrapper {
+		padding: 25px 30px;
 	}
 }

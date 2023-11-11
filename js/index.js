@@ -77,7 +77,7 @@ function renderMovies() {
 
 	wrapper.forEach((element, index) => {
 		const wrapperMovieItem = document.createElement('li');
-		wrapperMovieItem.className = 'movies__list-item';
+		wrapperMovieItem.className = 'movies__list__item';
 		wrapperMovieItem.setAttribute('id', index);
 
 		const wrapperMovieLabel = document.createElement('label');
@@ -95,7 +95,7 @@ function renderMovies() {
 		wrapperMovieName.innerText = element;
 
 		const wrapperMovieCloseBtn = document.createElement('button');
-		wrapperMovieCloseBtn.className = 'movie__close-btn';
+		wrapperMovieCloseBtn.className = 'movie__close__btn';
 		wrapperMovieCloseBtn.setAttribute('id', index);
 
 
