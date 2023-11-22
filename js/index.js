@@ -3,7 +3,6 @@ const movieAddBtnNode = document.getElementById('movieAddBtn');
 const moviesOutputNode = document.getElementById('movies');
 const validationMessageNode = document.getElementById('validationMessage');
 
-const TITLE_VALIDATION_MIN = 0;
 const TITLE_VALIDATION_MAX = 10;
 
 const minTitleLimitMessage = 'Фильм без названия не найти';
@@ -11,71 +10,71 @@ const maxTitleLimitMessage = 'Очень длинное название';
 
 let movies = [];
 
-function validation() {
-	const titleLength = titleMovieInputNode.value.length;
+// const saveMoviesToLocalStorage = () => {
+// 	localStorage.setItem('movies', JSON.stringify(movies));
+// }
 
-	if (!titleLength || titleLength < TITLE_VALIDATION_MIN) {
+function validation(movieFromUser) {
+
+	let result = true;
+
+	if (movieFromUser === '') {
 		validationMessageNode.className = 'validationMessage';
 		validationMessageNode.innerText = minTitleLimitMessage;
 		movieAddBtnNode.disabled = true;
-		return;
-	} 
+		result = false;
+		return result;
+	}
 
-	if (titleLength > TITLE_VALIDATION_MAX) {
+	if (movieFromUser > TITLE_VALIDATION_MAX) {
 		validationMessageNode.className = 'validationMessage';
 		validationMessageNode.innerText = maxTitleLimitMessage;
 		movieAddBtnNode.disabled = true;
-		return;
+		result = false;
+		return result;
 	} 
 
 		validationMessageNode.className = 'validationMessage__hidden';
 		movieAddBtnNode.disabled = false;
+
+		return result;
 };
 
 function newPostMovieHandler() {
 	const movieFromUser = getMovieFromUser();
 
-	addMovies(movieFromUser);
+	if (!validation(movieFromUser)) {
+		return;
+	}
 
+	movies.push(movieFromUser);
 
-	validation();
-	
-	renderMovies();
-	
-	clearInput();
+	renderMovies(movies);
 }
 
 // получение названия фильма из инпута
 function getMovieFromUser() {
-		const movieName = titleMovieInputNode.value;
+		const movieName = titleMovieInputNode.value.trim();
+
+		clearInput();
 
 		return movieName;
 }
 
+//очистка инпута
 function clearInput() {
 	titleMovieInputNode.value = "";
-	validation();
 };
 
-function addMovies(movie) {
-	movies.push(movie);
-	clearInput();
-}
-
-function getMovies() {
-	return movies;
-}
 
 // отображение фильма
-function renderMovies() {
+function renderMovies(movies) {
 	moviesOutputNode.innerHTML = '';
 
 	const movieWrapper = document.createElement('ul');
 	movieWrapper.className = 'movies__list';
 	
-	const wrapper = getMovies();
-
-	wrapper.forEach((element, index) => {
+	movies.forEach((movie, index) => {
 		const wrapperMovieItem = document.createElement('li');
 		wrapperMovieItem.className = 'movies__list__item';
 		wrapperMovieItem.setAttribute('id', index);
@@ -92,7 +91,7 @@ function renderMovies() {
 
 		const wrapperMovieName = document.createElement('span');
 		wrapperMovieName.className = 'movie__name';
-		wrapperMovieName.innerText = element;
+		wrapperMovieName.innerText = movie;
 
 		const wrapperMovieCloseBtn = document.createElement('button');
 		wrapperMovieCloseBtn.className = 'movie__close__btn';
@@ -106,31 +105,30 @@ function renderMovies() {
 		wrapperMovieLabel.appendChild(wrapperMovieCloseBtn);
 
 		movieWrapper.appendChild(wrapperMovieItem);
-	
 
 		wrapperCheckbox.addEventListener('click', () => {
-			if (element.check === 'unchecked') {
-				element.check = 'checked';
+			if (movie.check === 'unchecked') {
+				movie.check = 'checked';
 			} else {
-				element.check
+				movie.check;
 			}
 		});
+
 		wrapperMovieCloseBtn.addEventListener('click', function() {
 			// удаление одного элемента из массива
 			movies.splice(index, 1);
-			renderMovies()
+			renderMovies(movies)
 			});
 
 });
 
 moviesOutputNode.appendChild(movieWrapper)
-
 };
 
 function clickToEnter(e) {
 	if(e.keyCode === 13) {
-		event.preventDefault();
-		newPostMovieHandler()
+		e.preventDefault();
+		newPostMovieHandler();
 	}
 }
 

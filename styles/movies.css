@@ -89,6 +89,7 @@
 .movies__list__item:has(.label > .real__checkbox:checked) {
 	opacity: 0.4;
 	transition: all 0.3s ease;
+	text-decoration: line-through;
 }
 
 .movie__name {
